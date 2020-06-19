@@ -1,4 +1,4 @@
-include(cmake/StandardProjectSettings.cmake)
+include(cmake_includes/StandardProjectSettings.cmake)
 
 # Link this 'library' to set the c++ standard / compile-time options requested
 add_library(project_options INTERFACE)
@@ -22,21 +22,21 @@ option(ENABLE_TESTING "Enable Test Builds" ON)
 add_library(project_warnings INTERFACE)
 
 # standard compiler warnings
-include(cmake/CompilerWarnings.cmake)
+include(cmake_includes/CompilerWarnings.cmake)
 set_project_warnings(project_warnings)
 
 # sanitizer options if supported by compiler
-include(cmake/Sanitizers.cmake)
+include(cmake_includes/Sanitizers.cmake)
 enable_sanitizers(project_options)
 
 # enable doxygen
-include(cmake/Doxygen.cmake)
+include(cmake_includes/Doxygen.cmake)
 enable_doxygen()
 
 # allow for static analysis options
-include(cmake/StaticAnalyzers.cmake)
+include(cmake_includes/StaticAnalyzers.cmake)
 
-include(cmake/Conan.cmake)
+include(cmake_includes/Conan.cmake)
 run_conan()
 
 option(ENABLE_PCH "Enable Precompiled Headers" OFF)
