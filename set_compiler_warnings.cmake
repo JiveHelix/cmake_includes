@@ -4,6 +4,9 @@
 function (set_compiler_warnings targetName)
     option(WARNINGS_AS_ERRORS "Treat compiler warnings as errors" TRUE)
 
+    # TODO: GCC/Clang: Add -ftrivial-auto-var-init=pattern
+    #       MSVC: Add /RTC1
+
     set(microsoftWarnings
         /W4 # Baseline reasonable warnings
         /w14242 # 'identifier': conversion from 'type1' to 'type1', possible

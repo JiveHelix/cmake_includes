@@ -38,6 +38,7 @@ option(ENABLE_TESTING "Enable Test Builds" ${ENABLES_DEFAULT})
 
 option(ENABLE_PCH "Enable Precompiled Headers" OFF)
 option(RECURSIVE_BUILD_TESTS "Build tests of all subprojects" OFF)
+option(BUILD_EXAMPLES "Build the example targets" ON)
 
 option(ENABLE_IPO
        "Enable Interprocedural Optimization, aka Link Time Optimization (LTO)"
