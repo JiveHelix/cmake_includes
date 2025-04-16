@@ -21,6 +21,8 @@ macro (setup_project)
         include(${_DECLARE_PROJECT_DIR}/standard_project_settings.cmake)
         include(${_DECLARE_PROJECT_DIR}/add_version_header.cmake)
         include(${_DECLARE_PROJECT_DIR}/add_catch2_test.cmake)
+        include(${_DECLARE_PROJECT_DIR}/find_packages.cmake)
+        include(${_DECLARE_PROJECT_DIR}/enable_extras.cmake)
 
         if (ENABLE_TESTING)
             enable_testing()

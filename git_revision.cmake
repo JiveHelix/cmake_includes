@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 3.15)
-
 message(STATUS "Resolving GIT Information")
 
 set(buildRevision "unknown")
