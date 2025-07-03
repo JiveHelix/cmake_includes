@@ -1,4 +1,3 @@
-
 import os
 from conan import ConanFile
 from conan.tools.files import copy
@@ -119,4 +118,3 @@ class LibraryConanFile(BaseConanFile):
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
-
