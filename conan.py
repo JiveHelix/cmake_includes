@@ -14,16 +14,17 @@ class BaseConanFile(ConanFile):
         if not self.name:
             raise ConanInvalidConfiguration("name must be defined in subclass")
 
-        self.copy("CMakeLists.txt")
-        self.copy("*", src=self.name)
-
-
-    def export_sources(self):
         copy(
             self,
             "CMakeLists.txt",
             self.recipe_folder,
             self.export_sources_folder)
+
+        copy(
+            self,
+            "*",
+            src=os.path.join(self.recipe_folder, "cmake_includes"),
+            dst=os.path.join(self.export_sources_folder, "cmake_includes"))
 
         copy(
             self,
