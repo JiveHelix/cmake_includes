@@ -40,6 +40,18 @@ class BaseConanFile(ConanFile):
         self.cpp.package.includedirs = ["include"]
         self.cpp.build.libdirs = [f"{self.name}"]
 
+    def package_info(self):
+        if not self.name:
+            raise ConanInvalidConfiguration("name must be defined in subclass")
+
+        self.cpp_info.set_property("cmake_file_name", self.name)
+
+        self.cpp_info.set_property(
+            "cmake_target_name",
+            f"{self.name}::{self.name}")
+
+        self.cpp_info.includedirs = ["include"]
+
     def package(self):
         if not self.name:
             raise ConanInvalidConfiguration("name must be defined in subclass")
@@ -48,7 +60,7 @@ class BaseConanFile(ConanFile):
         copy(self,
              pattern="*.h",
              src=os.path.join(self.source_folder, f"{self.name}"),
-             dst=os.path.join(self.package_folder, "include"))
+             dst=os.path.join(self.package_folder, "include", f"{self.name}"))
 
         # Copy static libraries
         copy(self,
@@ -76,6 +88,7 @@ class HeaderConanFile(BaseConanFile):
     generators = "CMakeToolchain", "CMakeDeps"
 
     def package_info(self):
+        super().package_info()
         self.cpp_info.bindirs = []
         self.cpp_info.libdirs = []
 
@@ -100,10 +113,11 @@ class LibraryConanFile(BaseConanFile):
     generators = "CMakeDeps"
 
     def package_info(self):
-        if not self.name:
-            raise ConanInvalidConfiguration("name must be defined in subclass")
-
+        super().package_info()
         self.cpp_info.libs = [f"{self.name}"]
+
+        self.output.info(
+            f"{self.name}: includedirs = {self.cpp_info.includedirs}")
 
     def generate(self):
         tc = CMakeToolchain(self)
