@@ -34,5 +34,6 @@ else ()
 endif ()
 
 string(TIMESTAMP buildTime UTC)
+file(MAKE_DIRECTORY "${outputDirectory}")
 
-configure_file(${templateFile} ${outputDirectory}/git_revision.h @ONLY)
+configure_file("${templateFile}" "${outputDirectory}/git_revision.h" @ONLY)
