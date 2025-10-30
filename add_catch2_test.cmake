@@ -27,5 +27,9 @@ function(add_catch2_test)
         add_version_header(${ARG_NAME})
     endif()
 
-    add_test(NAME ${ARG_NAME}_run COMMAND ${ARG_NAME})
+    add_test(
+        NAME ${ARG_NAME}_run
+        COMMAND ${ARG_NAME}
+        WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
+
 endfunction()
