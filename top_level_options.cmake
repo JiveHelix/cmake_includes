@@ -8,6 +8,7 @@ if (MSVC)
     add_compile_options(/Zc:alignedNew)
     add_compile_options(/bigobj)
     add_compile_options(/MP)
+    add_compile_options(/diagnostics:caret /FC)
 
     # Makes static libraries by default.
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
