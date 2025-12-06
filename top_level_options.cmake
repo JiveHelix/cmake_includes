@@ -10,12 +10,33 @@ if (MSVC)
     add_compile_options(/MP)
     add_compile_options(/diagnostics:caret /FC)
 
+    option(
+        ENABLE_AVX2
+        "Enable AVX2 vector instructions"
+        ON)
+
+    option(
+        ENABLE_LTO
+        "Enable link-time optimization"
+        OFF)
+
+    if (ENABLE_AVX2)
+        # Add AVX2 to all configs except Debug.
+        add_compile_options("$<$<NOT:$<CONFIG:Debug>>:/arch:AVX2>")
+    endif ()
+
+    if (ENABLE_LTO)
+        # Add LTO to release builds only.
+        add_compile_options("$<$<CONFIG:Release>:/GL>")
+        add_link_options("$<$<CONFIG:Release>:/LTCG>")
+    endif ()
+
     # Makes static libraries by default.
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
     set(CMAKE_CXX_FLAGS_DEBUG "/MTd /Od /Zi /DDEBUG")
-    set(CMAKE_CXX_FLAGS_RELEASE "/MT /DNDEBUG")
-    set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/MT /DNDEBUG")
-    set(CMAKE_CXX_FLAGS_MINSIZEREL "/MT /DNDEBUG")
+    set(CMAKE_CXX_FLAGS_RELEASE "/MT /DNDEBUG /O2")
+    set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/MT /DNDEBUG /O2")
+    set(CMAKE_CXX_FLAGS_MINSIZEREL "/MT /DNDEBUG /O2")
 endif ()
 
 if (${CMAKE_CXX_COMPILER_ID} MATCHES ".*Clang")
