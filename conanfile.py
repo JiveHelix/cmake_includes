@@ -6,7 +6,7 @@ from conan import ConanFile
 
 class BoilerConan(ConanFile):
     name = "boiler"
-    version = "0.1"
+    version = "0.2"
     exports = "boiler.py"
     package_type = "python-require"
 

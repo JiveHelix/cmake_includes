@@ -122,6 +122,8 @@ class LibraryConanFile(BaseConanFile):
     def generate(self):
         tc = CMakeToolchain(self)
 
+        tc.variables["BOILER_CONAN_PACKAGE_BUILD"] = True
+
         if self.options.CMAKE_TRY_COMPILE_TARGET_TYPE:
             tc.variables["CMAKE_TRY_COMPILE_TARGET_TYPE"] = \
                 str(self.options.CMAKE_TRY_COMPILE_TARGET_TYPE)
