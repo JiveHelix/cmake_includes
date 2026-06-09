@@ -2,6 +2,12 @@ set(_DECLARE_PROJECT_DIR ${CMAKE_CURRENT_LIST_DIR} CACHE INTERNAL "")
 
 include(${_DECLARE_PROJECT_DIR}/prevent_in_source_builds.cmake)
 
+# Silence warnings about unused CMAKE_TOOLCHAIN_FILE when rerunning
+# cmake --preset.
+if (DEFINED CMAKE_TOOLCHAIN_FILE)
+    message(VERBOSE "Using CMake toolchain file: ${CMAKE_TOOLCHAIN_FILE}")
+endif ()
+
 #! setup_project
 # Configures project settings and conan dependencies.
 macro (setup_project)
