@@ -9,7 +9,7 @@ function(add_catch2_test)
 
     set(test_libraries ${ARG_LINK} project_warnings project_options)
 
-    if(NOT ARG_NO_MAIN)
+    if (NOT ARG_NO_MAIN)
         add_library(
             ${ARG_NAME}_catch_main
             STATIC ${CMAKE_CURRENT_SOURCE_DIR}/catch_main.cpp)
@@ -17,15 +17,15 @@ function(add_catch2_test)
         target_link_libraries(${ARG_NAME}_catch_main PUBLIC Catch2::Catch2)
 
         list(PREPEND test_libraries ${ARG_NAME}_catch_main)
-    endif()
+    endif ()
 
     add_executable(${ARG_NAME} ${ARG_SOURCES})
 
     target_link_libraries(${ARG_NAME} PRIVATE ${test_libraries})
 
-    if(COMMAND add_version_header)
+    if (COMMAND add_version_header)
         add_version_header(${ARG_NAME})
-    endif()
+    endif ()
 
     add_test(
         NAME ${ARG_NAME}_run

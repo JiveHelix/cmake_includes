@@ -50,11 +50,7 @@ if (${CMAKE_CXX_COMPILER_ID} MATCHES ".*Clang")
     endif ()
 endif ()
 
-if (CONAN_EXPORTED)
-    set(ENABLES_DEFAULT OFF)
-else ()
-    set(ENABLES_DEFAULT ON)
-endif ()
+set(ENABLES_DEFAULT ON)
 
 option(ENABLE_TESTING "Enable Test Builds" ${ENABLES_DEFAULT})
 
@@ -62,7 +58,8 @@ option(ENABLE_PCH "Enable Precompiled Headers" OFF)
 option(RECURSIVE_BUILD_TESTS "Build tests of all subprojects" OFF)
 option(BUILD_EXAMPLES "Build the example targets" ON)
 
-option(ENABLE_IPO
-       "Enable Interprocedural Optimization, aka Link Time Optimization (LTO)"
-       OFF)
+option(
+    ENABLE_IPO
+    "Enable Interprocedural Optimization, aka Link Time Optimization (LTO)"
+    OFF)
 

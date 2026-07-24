@@ -34,9 +34,7 @@ macro (setup_project)
             enable_testing()
         endif ()
 
-        if (NOT CONAN_EXPORTED)
-            include(GNUInstallDirs)
-        endif ()
+        include(GNUInstallDirs)
 
     endif ()
 
